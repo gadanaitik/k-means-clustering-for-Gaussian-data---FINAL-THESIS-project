@@ -1,0 +1,63 @@
+\section{Description}
+\par The basic algorithm clusters raw data into a predetermined number of clusters. The first step of this algorithm is to determine the number of clusters needed. For easily decipherable data, a visualization step is all that is needed to estimate the number of clusters in the data. For larger, more complex data sets, this can be achieved by a number of methods like the Davies Bouldin index, Calinski Harabasz index, Gap Evaluation, Silhouette Evaluation \cite{10}. The most popular is the elbow method that makes use of the distortion or inertia of the entire data set. Distortion is defined to be the average of the squared distances from the cluster centers of the respective clusters and inertia is just the sum of squared distances of the samples to their closest cluster center \cite{3}, \cite{4}, \cite{10}. For this paper we used the Calinski Harabasz index that has an inbuilt function in Matlab and confirmed the validity using the elbow method. 
+\par Once the cluster validity was established, the algorithm requires the initialization of the cluster centers. For the initialization step, a random permutation of indices equal to the number of clusters was generated and used to map the initial cluster centers from the given data set. The upper and lower bound of the cluster centers were the maximum and minimum of the data set. The next step was to evaluate the Euclidean distance from the cluster centers generated in the previous step to the rest of the data set and associate a cluster number with each pairing. The association was achieved by taking the lowest distance of a data point to one of the clusters. This was done in a loop for the entire data set and the average of the sum of the within-cluster distance was then taken. The average was taken to be the new cluster center for the next iteration. This was repeated until the cluster centers did not change, which indicated the optimal positions of the clusters. The final step of this algorithm was to compare the association of the data points and their cluster membership to the original data set. Once the comparison was made, the assigned clusters were used to calculate the overall accuracy of the algorithm along with its sensitivity, recall and F1 score. Having these scores along with the confusion matrix gave us a quantifiable insight into its performance.
+
+\section{Terms and Definitions}
+A set of \textit{p} data points in a multidimensional space, $R^d$ contain instances and attributes (or features). For the ease of understanding, the data set was thought of as an  \textit{m} x \textit{n} matrix. The total number of elements in this matrix would then be, \textit{m} x \textit{n} = \textit{p}. Instances are the number of observations, \textit{m} (or rows of a matrix) and features are the number of total dimensions, \textit{n} (or columns of a matrix). \textit{k} is the number of clusters in the data set which is predetermined. The initial centroid matrix will be \textit{k} x \textit{n}. The goal of this algorithm is to minimize the within-cluster distance (WCD) and maximize the inter-cluster distance (ICD). WCD is defined as the total distance of a cluster center to each corresponding data point in that cluster, summed over the number of clusters. Mathematically, for \textit{k} clusters:
+$$ C_j = \sum_{\overrightarrow{x_i} \in C_j} ||\overrightarrow{x_i} - \overrightarrow{C_j} ||^2 $$
+
+for \textit{j} = \textit{1},..., \textit{k}. \\
+
+ICD is the total distance of a data point belonging to cluster \textit{j} and a data point not belonging to cluster \textit{j}, summed over all clusters:
+
+$$ D_{ip} = \sum_{\overrightarrow{x_i} \in C_i} \sum_{\overrightarrow{x_p} \notin C_j} || \overrightarrow{x_i} - \overrightarrow{x_p}||^2 $$ \\
+$$ D = \sum_{i} \sum_{p} D_{ip} $$
+
+The total metric of the algorithm is the relative cost, which is the ratio of WCD and ICD:
+
+$$ \sum_{j = 1}^k \frac{\sum C_j}{D} $$
+
+The overall accuracy of the algorithm is evaluated using a confusion matrix. A confusion matrix is a $\textit{k}^{th}$ order square matrix. It is a matching matrix that compares the actual cluster labels from the data set to the output labels. The elements of the matrix are given by:
+$$ \begin{bmatrix}
+
+TP & FN \\
+FP & TN
+
+\end{bmatrix} $$
+
+where, TP is True Positive, FN is False Negative, FP is False Positive and TN is True Negative. The overall accuracy (OA) of the algorithm is calculated by adding the diagonal elements and dividing by the total of all the elements of the matrix. That is,
+$$ OA = \frac{TP + TN}{TP + FN + FP + TN} $$
+
+Precision, also known as the positive predictive value (PPV) is the ratio of TP and the sum of TP and FP:
+$$ PPV = \frac{TP}{TP + FP} $$ 
+
+Recall is the true positive rate (TPR). It's the ratio of the true positives and the total positives:
+$$ TPR = \frac{TP}{TP + FN} $$
+
+F1 score is the mean of precision and sensitivity:
+$$ F_1 = \frac{2*TP}{2*TP + FP + FN} $$
+\\
+\\
+
+\section{Pseudocode}
+
+\begin{algorithm}
+	\caption{k-means clustering} 
+	\begin{algorithmic}[1]
+	\State Calculate number of clusters
+	\State Initialize cluster centers
+		\For {$iteration=1,2,\ldots, Z$}
+			\For {$iteration=1,2,\ldots,M$}
+				\State Calculate $C_j$,
+				\State Compute $D$
+				\State Optimize relative cost, $\frac{C_j}{D}$
+				\For{$iteration = 1 \ldots,k$}
+				    \State mean$(Cluster_j)$
+				\EndFor
+				\State New centroids = mean$(Cluster_j)$
+			\EndFor
+			\State Compute the confusion matrix
+			\State Calculate OA, Precision, Recall, F1 score
+		\EndFor
+	\end{algorithmic} 
+\end{algorithm}

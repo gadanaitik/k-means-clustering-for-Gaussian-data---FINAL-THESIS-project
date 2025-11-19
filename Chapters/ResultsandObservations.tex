@@ -1,0 +1,294 @@
+\section{Synthetic Data Sets}
+\subsection{2D Data with variance = 0.5}
+The first set of synthetic data that was generated was a 2-dimensional data set with a variance of 0.5.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.75]{Images and Figures/2D_Var_0.5.png}
+\caption{2-dimensional data with variance = 0.5}
+\label{fig_2D_var_0.5}
+\end{figure}
+
+As seen in \textbf{figure \ref{fig_2D_var_0.5}}, the clusters are segregated enough which makes them easy to identify since they are closely packed. The accuracy results of this data set are summarized in \textbf{table \ref{tab_2D_var_0.5}}. 
+
+\begin{table}[H]
+\centering
+\begin{tabular}[c]{ |p{2.5cm}||p{2.5cm}|p{2cm}|p{2cm}| p{2cm}| }
+ \hline
+ \multicolumn{5}{|c|}{\textbf{2-dimensional, Variance = 0.5}} \\
+ \hline
+ \textbf{Algorithm}& \textbf{Accuracy} & \textbf{Recall} & \textbf{Precision} & \textbf{F Score} \\
+ \hline
+ Proposed k-means & 0.9705&0.9593&0.9625&0.9608\\
+ \hline
+ Traditional k-means& 0.9607&0.9445&0.9485&0.9464\\
+ \hline
+\end{tabular}
+\caption{Results for 2D data with variance = 0.5}
+\label{tab_2D_var_0.5}
+\end{table}
+
+The proposed \textit{k}-means algorithm that includes the ICD outperforms the traditional \textit{k}-means across the board. The Overall Accuracy, Recall, Precision and F-Score are all greater with the new proposed \textit{k}-means algorithm. One thing to note here is that the code is iterated 100 times and the scores in \textbf{table \ref{tab_2D_var_0.5}} represent the average over 100 iterations. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.25\textwidth, center]{Images and Figures/OA_2D_Var_0.5.png}
+\caption{Overall Accuracy of the proposed \textit{k}-means vs traditional \textit{k}-means over 100 iterations (variance = 0.5)}
+\label{fig_OA_2D_var_0.5}
+\end{figure}
+
+We can see what the accuracy for each method looks like over 100 iterations in \textbf{figure \ref{fig_OA_2D_var_0.5}}. The faint blue line represents the new proposed algorithm while the orange line represents the traditional \textit{k}-means algorithm. It's clear that the results vary with every iteration with only a few consistent accuracy results. The new proposed algorithm reaches a perfect score numerous times throughout the 100 iterations while the traditional \textit{k}-means reaches the highest value of 0.9833 at its best. However, if noted closely, the new proposed algorithm has a lower accuracy during a few of those iterations. For example, during iteration 40, the new proposed algorithm drops below 70 percent accuracy. Running through the 100 iterations to make the results statistically viable also reveals a few weaknesses of the clustering algorithm itself as has been mentioned in multiple studies \cite{16}, \cite{17}, \cite{6}, \cite{5}. Since majority of the iterations range above 95 percent accuracy, the iterations that return less than that can be viewed as outliers. These iterations are the ones where the algorithm might have been susceptible to the initial centroid positions. One of the biggest weaknesses of \textit{k}-means is its sensitivity to the initial cluster centers. This could explain the iterations that return relatively lower accuracies. It is also interesting to note that through the 100 iterations, the cluster center initiation remains the same for both the proposed method and the traditional \textit{k}-means algorithm. This means that the permutation numbers that generate the random cluster centers are consistent for both methods. For example, if at iteration $25$ the initial cluster centers for one method were generated at \textit{x}, \textit{y}, \textit{z} coordinates of (1, 2, 3), then the initial cluster centers for the other method would also be at (1, 2, 3). Overall, the proposed algorithm evidently outperforms the traditional \textit{k}-means albeit by only 1 percent. This is a first indication of how including the ICD in the algorithm can generate better clustering results.
+
+
+\subsection{2D Data with variance = 1}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.75]{Images and Figures/2D_Var_1.png}
+\caption{2-dimensional data with variance = 1}
+\label{fig_2D_var_1}
+\end{figure}
+
+\textbf{Figure \ref{fig_2D_var_1}} shows the 2-dimensional data set with a variance of 1. The cluster separation is less evident here as compared to a variance of 0.5 and yet the proposed algorithm outperforms the traditional \textit{k}-means by about 3 percent. The proposed \textit{k}-means returns an accuracy of 98.01 percent averaged over 100 iterations while the traditional \textit{k}-means returns 95.08 percent. Results for Recall, Precision and F Score are summarized in \textbf{table \ref{tab_2D_var_1}}. As outlined earlier during the literature research, most of the papers failed to provide a quantifiable method to evaluate the algorithms they proposed. One of the driving factors of this project was to be able to robustly quantify the proposed algorithm. 
+
+\begin{table}[H]
+\centering
+\begin{tabular}[c]{ |p{2.5cm}||p{2.5cm}|p{2cm}|p{2cm}| p{2cm}| }
+ \hline
+ \multicolumn{5}{|c|}{\textbf{2-dimensional, Variance = 1}} \\
+ \hline
+ \textbf{Algorithm}& \textbf{Accuracy} & \textbf{Recall} & \textbf{Precision} & \textbf{F Score} \\
+ \hline
+ Proposed k-means & 0.9801&0.9816&0.9756&0.9785\\
+ \hline
+ Traditional k-means& 0.9508&0.9386&0.9400&0.9391\\
+ \hline
+\end{tabular}
+\caption{Results for 2D data with variance = 1}
+\label{tab_2D_var_1}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.75]{Images and Figures/OA_2D_Var_1.png}
+\caption{Overall Accuracy of the proposed \textit{k}-means vs traditional \textit{k}-means over 100 iterations (variance = 1)}
+\label{OA_fig_2D_var_1}
+\end{figure}
+
+We can see how often the traditional \textit{k}-means drops in accuracy to sub-70 percent as compared to the new proposed algorithm. This might be a result of the cluster center initialization but the code was set up in a way that had the same initialization positions for both methods. The overall accuracy is higher in the new proposed algorithm and stays more consistent than its traditional counterpart. Taking into account the average over 100 iterations, the new algorithm still outperforms the traditional one in terms of consistency and overall higher accuracy per iteration. 
+
+\newpage
+
+
+\subsection{3D Data with variance = 0.5}
+The next synthetic data is a 3-dimensional data set with a variance of 0.5. You can see how the generated data is clustered in \textbf{figure \ref{fig_3D_var_0.5}}. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.25\textwidth, center]{Images and Figures/3D_Var_0.5.png}
+\caption{3-dimensional data with variance = 0.5}
+\label{fig_3D_var_0.5}
+\end{figure}
+
+The Overall Accuracy is just above 97 percent with the proposed algorithm and just under 93 percent for the traditional \textit{k}-means algorithm. The proposed algorithm outperforms the traditional method by about 4 percent. The Recall, Precision and F Score values are all tabulated in \textbf{table \ref{tab_3D_var_0.5}}. You can see the comparative performance of both methods in \textbf{figure \ref{fig_OA_3D_var_0.5}}. The instances where the initial cluster centers play a part in affecting the Overall Accuracy, the proposed method has fewer drops in accuracy as compared to the traditional \textit{k}-means. In addition, the drops are greater in magnitude for the traditional method. This contributes to the overall lower accuracy as we see in \textbf{table \ref{tab_3D_var_0.5}}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth, center]{Images and Figures/OA_3D_Var_0.5.png}
+\caption{Overall Accuracy of the proposed \textit{k}-means vs traditional \textit{k}-means over 100 iterations (variance = 0.5)}
+\label{fig_OA_3D_var_0.5}
+\end{figure}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}[c]{ |p{2.5cm}||p{2.5cm}|p{2cm}|p{2cm}| p{2cm}| }
+ \hline
+ \multicolumn{5}{|c|}{\textbf{3-dimensional, Variance = 0.5}} \\
+ \hline
+ \textbf{Algorithm}& \textbf{Accuracy} & \textbf{Recall} & \textbf{Precision} & \textbf{F Score} \\
+ \hline
+ Proposed k-means & 0.9706&0.9566&0.9619&0.9591\\
+ \hline
+ Traditional k-means& 0.9298&0.9155&0.9239&0.9195\\
+ \hline
+\end{tabular}
+\caption{Results for 3D data with variance = 0.5}
+\label{tab_3D_var_0.5}
+\end{table}
+
+Analyzing the results in \textbf{figure \ref{fig_OA_3D_var_0.5}} further, we can infer that the traditional \textit{k}-means is more susceptible to the initial cluster centers as is evident through the iterations where the overall accuracy of the new proposed method is consistently perfect whereas the traditional \textit{k}-means drops to about 60 percent accuracy for the same iterations and the same initial cluster center positions. 
+
+\newpage
+
+\subsection{3D Data with variance = 1}
+The results for the outputs are summarized in \textbf{table \ref{tab_3D_var_1}}. It is interesting to note that the Overall Accuracy is higher than the 3D data set with variance 0.5. This trend is also evident with the 2D data set. Results for a variance of 0.5 were lower than those for a variance of 1, even though the cluster separation becomes relatively ill defined as the variance increases.  
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.25\textwidth, center]{Images and Figures/3D_Var_1.png}
+\caption{3-dimensional data with variance = 1}
+\label{fig_3D_var_1}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}[c]{ |p{2.5cm}||p{2.5cm}|p{2cm}|p{2cm}| p{2cm}| }
+ \hline
+ \multicolumn{5}{|c|}{\textbf{3-dimensional, Variance = 1}} \\
+ \hline
+ \textbf{Algorithm}& \textbf{Accuracy} & \textbf{Recall} & \textbf{Precision} & \textbf{F Score} \\
+ \hline
+ Proposed k-means & 0.9743&0.9755&0.9636&0.9695\\
+ \hline
+ Traditional k-means& 0.9514&0.9466&0.9422&0.9443\\
+ \hline
+\end{tabular}
+\caption{Results for 3D data with variance = 1}
+\label{tab_3D_var_1}
+\end{table}
+
+The direct correlation between the variance and the overall accuracy of synthetic data set may also hint at the robustness of the algorithm and its ability to cluster relatively ambiguous data. You can see the evidence of this robustness in \textbf{figure \ref{fig_OA_3D_var_1}}. The overall accuracy of the proposed algorithm remains very consistent iteration over iteration while the traditional \textit{k}-means is sensitive to the initial cluster centers. The other thing to note is the magnitude of the drops in overall accuracy of the proposed algorithm versus the traditional methods. In iterations where the traditional \textit{k}-means drops to about 60 percent accuracy, the proposed algorithm stays around a near 100 percent accuracy with only a couple of drops. This could point to the two instances where the initial cluster centers might have contributed towards the poor clustering of the data. As is clear, even the proposed algorithm is not immune to the positions of the initial cluster centers. Regardless, the hypothesis of a better performance of the algorithm by including the ICD in the underlying \textit{k}-means algorithm has been solidified from the results of the four synthetic data sets we have presented so far. In the following sections, this hypothesis will be further tested using real-life benchmark data sets that were picked from the UCI Machine Learning Repository. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth, center]{Images and Figures/OA_3D_Var_1.png}
+\caption{Overall Accuracy of the proposed \textit{k}-means vs traditional \textit{k}-means over 100 iterations (variance = 1)}
+\label{fig_OA_3D_var_1}
+\end{figure}
+
+\newpage
+\section{UCI Machine Learning Repository}
+\subsection{Iris Data set}
+The Iris data set is a benchmark data set for any kind of unsupervised machine learning algorithm analysis. It's the most widely researched data set. We can see how the data set is clustered in \textbf{figure \ref{fig_Iris_clusters}}. The three clusters represent the three types of Iris flowers: Setosa, Versicolour and Virginica. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.25\textwidth, center]{Images and Figures/Iris_clusters.png}
+\caption{The raw Iris data clusters}
+\label{fig_Iris_clusters}
+\end{figure}
+
+Running both the proposed algorithm and the traditional \textit{k}-means algorithm, we can see that the proposed algorithm outperforms the traditional method across the board. \textbf{Table \ref{tab_Iris}} shows the results from the run and \textbf{figure \ref{fig_OA_Iris}} shows the accuracy over 100 iterations.
+
+\begin{table}[H]
+\centering
+\begin{tabular}[c]{ |p{2.5cm}||p{2.5cm}|p{2cm}|p{2cm}| p{2cm}| }
+ \hline
+ \multicolumn{5}{|c|}{\textbf{Iris Data set}} \\
+ \hline
+ \textbf{Algorithm}& \textbf{Accuracy} & \textbf{Recall} & \textbf{Precision} & \textbf{F Score} \\
+ \hline
+ Proposed k-means & 0.8420&0.8420&0.8347&0.8380\\
+ \hline
+ Traditional k-means& 0.7751&0.7751&0.7661&0.7703\\
+ \hline
+\end{tabular}
+\caption{Results for Iris Data}
+\label{tab_Iris}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.25\textwidth, center]{Images and Figures/OA_Iris.png}
+\caption{Overall Accuracy for Iris}
+\label{fig_OA_Iris}
+\end{figure}
+
+What is interesting to note is that even though the drops in accuracy at certain intervals align almost perfectly between the two methods, the maximum accuracy achieved through the proposed algorithm is higher than the maximum accuracy with the traditional method. The proposed algorithm reaches a maximum accuracy of about 95.33 percent while the traditional method cannot break the 85 percent barrier. The drawback of the initial cluster centers is evident in both methods but it weighs more on the traditional \textit{k}-means than it does on the proposed algorithm pointing to the advantage of including the ICD. While the accuracy for the new proposed method is not as high as some of the literature studies have achieved, it is evidently higher than the traditional \textit{k}-means algorithm, which is what was hypothesized for this project. One study \cite{18} achieves a 92.67 percent accuracy using a genetic algorithm with the traditional \textit{k}-means. Another study \cite{20} achieves a 95 percent and a 99 percent accuracy with the two methods they propose in their study that happens to address the issue of the sensitivity to the initial cluster centers.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.25\textwidth, center]{Images and Figures/Iris_prop_trad_clusters.png}
+\caption{Clusters produced by the proposed method vs traditional \textit{k}-means}
+\label{fig_Iris_prop_trad_custers}
+\end{figure}
+
+\textbf{Figure \ref{fig_Iris_prop_trad_custers}} visually compares the clustering achieved by the two methods. The upper subplot is the clustering for the proposed method and the lower subplot is for the traditional method. Both plots also have the cluster centers to better be able to understand how the algorithm works. There is a outlier data point near the coordinate (2,2,0) that should be clustered as Iris Setosa but the traditional method fails to do so. The proposed method correctly identifies this data point. Upon taking a closer look, the answer may be in the cluster centers themselves. As has been mentioned multiple times through this paper, the algorithm is very susceptible to the initial cluster centers. You can see that the cluster center for the Versicolor is somewhat in the background for the proposed method as opposed to the relatively foreground position for the traditional method. Since we are choosing new cluster centers by averaging the within cluster distance at every iteration, including the ICD may provide a more robust clustering as supposed to the traditional \textit{k}-means method. The cluster center being positioned in the background forces the algorithm to cluster the data point correctly as opposed to missing it in the traditional method. 
+
+%%%%%%% WINE DATA %%%%%%%
+\subsection{Wine Data set}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.3\textwidth, center]{Images and Figures/Wine_clusters.png}
+\caption{The raw Wine data clusters}
+\label{fig_Wine_clusters}
+\end{figure}
+
+Results of the wine data set are summarized in \textbf{table \ref{tab_Wine}}. It is important to note that the scatter plot shown in \textbf{figure \ref{fig_Wine_clusters}} only shows 3 of the 13 dimensions or attributes of the entire data set. The proposed algorithm resulted in a higher overall accuracy along with recall, precision and F scores for the data as compared to the traditional method. Although the accuracy is not very high, resulting in only a 75.16 percent accuracy, it outperforms the traditional method by almost 9 percent. As a reminder, the goal of this project was not to aim for a very high accuracy but rather to create more accurate clusters of the data. Both methods were ran 100 times and the scores in \textbf{table \ref{tab_Wine}} reflect the average over 100 iterations. You can see how consistent the proposed algorithm is with very minimal susceptibility to initial cluster centers while the traditional \textit{k}-means being very volatile. This volatility can be attributed to the sensitivity of the traditional method to the initial cluster centers.
+\begin{table}[H]
+\centering
+\begin{tabular}[c]{ |p{2.5cm}||p{2.5cm}|p{2cm}|p{2cm}| p{2cm}| }
+ \hline
+ \multicolumn{5}{|c|}{\textbf{Wine Data set}} \\
+ \hline
+ \textbf{Algorithm}& \textbf{Accuracy} & \textbf{Recall} & \textbf{Precision} & \textbf{F Score} \\
+ \hline
+ Proposed k-means & 0.7516&0.7318&0.7609&0.7460\\
+ \hline
+ Traditional k-means& 0.6637&0.6698&0.6863&0.6778\\
+ \hline
+\end{tabular}
+\caption{Results for Wine Data}
+\label{tab_Wine}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth, center]{Images and Figures/OA_Wine.png}
+\caption{Overall Accuracy for Wine}
+\label{fig_OA_Wine}
+\end{figure}
+\textbf{Figure \ref{fig_Wine_clusters}} shows us the ambiguity in the cluster separation. Despite this ambiguity, the proposed algorithm was able to not only perform better overall, but it also had a lower sensitivity to the cluster centers and hence a less volatile accuracy output. To better understand the difference in both algorithms, \textbf{figure \ref{fig_Wine_prop_trad_custers}} plots the clustered data forced by the algorithms along with the cluster centers. On first glance, it may seem like the traditional \textit{k}-means has relatively clearer separation in its clustered data, but the accuracy of those clusters is very low compared the clusters formed from the proposed algorithms. It is also interesting to note how robustly the proposed algorithm correctly classifies the outliers in the data. Outliers here do not mean outliers from a statistical perspective but rather they signify the data points that are further away in distance than the majority of the data points in the clusters. In this figure, the points at coordinates of about (0.6, 0.5, 2.5) and (0.3, 3.5, 2.5) have been correctly identified as Class 2 by the proposed algorithm but the same have been misclassified by the traditional method. We saw the same trend with the Iris data set. It is becoming clear that the proposed algorithm is robust enough to correctly classify outliers. Albeit, we have only seen this trend with two data sets so the statistical significance of this observation is pretty low. Nonetheless, we have seen consistent outperformance in accuracy of the proposed algorithm over the traditional method.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.25\textwidth, center]{Images and Figures/Wine_prop_trad_clusters.png}
+\caption{Clusters produced by the proposed method vs traditional \textit{k}-means}
+\label{fig_Wine_prop_trad_custers}
+\end{figure}
+
+
+%%%%%% BREAST CANCER DATA %%%%%%%%%
+\subsection{Breast Cancer Data set}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth, center]{Images and Figures/Breast_clusters.png}
+\caption{The raw breast cancer data set clusters}
+\label{fig_breast_clusters}
+\end{figure}
+The breast cancer data set comprises of the digital information from images of breast mass, describing the characteristics of cell nuclei present in the image. The data set itself is a 9 dimensional data set with the last feature being the  diagnosis (classification) of that data point (either Benign or Malignant). All the previous data sets we've used have only been either a 2-dimensional or a 3-dimensional data set because the proposed algorithm itself was synthesized for lower dimensional data with a gaussian distribution. We hypothesized that including the ICD in the k-means algorithm results in higher overall accuracy and more robust clustering in the data. That hypothesis has been proven with the results of all the data sets so far. For our final experiment, it was interesting to stress-test the algorithm with a higher dimensional data set and observe its performance with regards to the same metrics used to quantify the previous results - Overall Accuracy, Recall, Precision and F Score. As shown in \textbf{table \ref{tab_breast}}, the difference between the two methods is minuscule. Overall Accuracy only drops about 0.3 percent and the same difference in numbers trickles down to the other metrics. Maybe this small change is a result of the data being more than 3 dimensions as has been the case in all the previous data sets. Despite the small jump, the proposed algorithm manages to outperform the traditional method.
+
+\begin{table}[H]
+\centering
+\begin{tabular}[c]{ |p{2.5cm}||p{2.5cm}|p{2cm}|p{2cm}| p{2cm}| }
+ \hline
+ \multicolumn{5}{|c|}{\textbf{Breast Caner data set}} \\
+ \hline
+ \textbf{Algorithm}& \textbf{Accuracy} & \textbf{Recall} & \textbf{Precision} & \textbf{F Score} \\
+ \hline
+ Proposed k-means & 0.9612&0.9532&0.9611&0.9571\\
+ \hline
+ Traditional k-means& 0.9582&0.9499&0.9578&0.9538\\
+ \hline
+\end{tabular}
+\caption{Results for Breast Data set} 
+\label{tab_breast}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.2\textwidth, center]{Images and Figures/Breast_prop_trad_clusters.png}
+\caption{Clusters produced by the proposed method vs traditional \textit{k}-means}
+\label{fig_breast_prop_trad_clusters}
+\end{figure}
+
+The clusters produced by the two methods are shown in \textbf{figure \ref{fig_breast_prop_trad_clusters}} and it is obvious that both methods are pretty close in their performances. The cluster centers from the last iteration that are shown, are almost identical for both methods and the clustering itself has a significant overlap between the two except for a few of the misclassified data points as is expected. The algorithm handled the stress test fairly well despite being catered towards a lower dimensional data set. In addition, the proposed method is less volatile in its performance over the 100 iterations as compared to the traditional method. To validate our evaluation metrics, let's say that in an extreme case the clustering caused all data points to move to one cluster resulting in a class imbalance. At its worst, the overall accuracy would still only fall to about 50 percent, which checks out from a hypothetical perspective in terms of the mathematics behind the evaluation. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.2\textwidth, center]{Images and Figures/OA_Breast.png}
+\caption{Overall Accuracy for Breast Cancer}
+\label{fig_OA_breast}
+\end{figure}
+
+We can see in \textbf{figure \ref{fig_OA_breast}} how the volatility compares between the two methods, iteration over iteration. We've seen this happen with the Iris and Wine data sets as well but with the breast cancer data set, it is more robust and apparent. While the proposed method consistently hovers in the 96.2 to 96 percent range, the traditional method jumps between 96.4 to 95.4 percent. Although it is worth noting that the traditional method does score higher than the proposed method. The sensitivity to the initial cluster centers is definitely a factor worth considering when choosing an appropriate algorithm to deploy for a data set. Observations over the data sets used in this project have clearly shown that, albeit in small numbers. It can be a launching pad for research behind the nuanced numerical methods involved in k-methods clustering and clustering analysis in general to see if there are more efficient ways to avert the sensitivity to initial cluster centers. A large number of papers that were read for the literature review on this project suggested multiple initialization techniques and also distance measures that would prove beneficial for a novel approach with high accuracy measures \cite{5}, \cite{6}, \cite{7}.
