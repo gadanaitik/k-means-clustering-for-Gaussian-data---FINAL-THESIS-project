@@ -1,0 +1,74 @@
+    \documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,width = 150mm, top = 25mm, bottom = 25mm]{geometry}
+\usepackage{graphicx}
+\graphicspath{{Images and Figures/}}
+\usepackage[export]{adjustbox}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage[sorting = none]{biblatex}
+\addbibresource{References.bib}
+\usepackage{dirtytalk}
+\usepackage{algorithm} 
+\usepackage{algpseudocode} 
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\urlstyle{same}
+
+\title{
+    {A novel k-means clustering approach using two distance measures for Gaussian data}  \\
+    {\small School of Mathematical Sciences}\\
+    {\small College of Science} \\
+    {\small Rochester Institute of Technology}
+    }
+    
+
+\author{Naitik H. Gada}
+\date{$22^{nd}$ October, 2022}
+
+\begin{document}
+
+\maketitle
+
+\chapter*{Abstract}
+Clustering algorithms have long been the topic of research, representing the more popular side of unsupervised learning. Since clustering analysis is one of the best ways to find some clarity and structure within raw data, this paper explores a novel approach to \textit{k}-means clustering. Here we present a \textit{k}-means clustering algorithm that takes both the within cluster distance (WCD) and the inter cluster distance (ICD) as the distance metric to cluster the data into \emph{k} clusters pre-determined by the Calinski-Harabasz criterion in order to provide a more robust output for the clustering analysis. The idea with this approach is that by including both the measurement metrics, the convergence of the data into their clusters becomes solidified and more robust. We run the algorithm with some synthetically produced data and also some benchmark data sets obtained from the UCI repository. The results show that the convergence of the data into their respective clusters is more accurate by using both WCD and ICD measurement metrics. The algorithm is also better at clustering the outliers into their true clusters as opposed to the traditional \textit{k} means method. We also address some interesting possible research topics that reveal themselves as we answer the questions we initially set out to address. 
+
+\tableofcontents
+
+
+\chapter{Introduction}
+\input{Chapters/Introduction}
+
+\chapter{Related Work}
+\input{Chapters/RelatedWork}
+
+
+\chapter{Algorithm Overview}
+\input{Chapters/AlgorithmOverview}
+
+\chapter{Data}
+\input{Chapters/Data}
+
+\chapter{Results and Observations}
+\input{Chapters/ResultsandObservations}
+
+\chapter{Conclusion}
+\input{Chapters/Conclusion}
+
+\chapter{Future work}
+\input{Chapters/Future Work}
+
+\listoffigures
+\listoftables
+
+\printbibliography
+
+\end{document}
